@@ -18,7 +18,7 @@ namespace TinyDependencyInjectionContainer
                 foreach (var line in File.ReadAllLines(str))
                 {
 
-                    if (line.StartsWith("#")) continue;
+                    if (line.StartsWith("#")|| line.Equals("")) continue;
                     var item = line.Split('*');
                     var interfaceAssembly = Assembly.LoadFrom(item[0]);
                     var implementationAssembly = Assembly.LoadFrom(item[2]);

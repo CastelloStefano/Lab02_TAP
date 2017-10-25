@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{7C8A6463-3DF5-4F35-8821-E04AAB04746C}</ProjectGuid>
+    <ProjectGuid>{310994B2-B4A8-47DE-8CB2-EEAA09769C53}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>EmailSenderInterfaces</RootNamespace>
-    <AssemblyName>EmailSenderInterfaces</AssemblyName>
+    <RootNamespace>TinyDependencyInjectionContainer</RootNamespace>
+    <AssemblyName>TinyDependencyInjectionContainer</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -40,7 +40,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="EmailSenderInterfaces.cs" />
+    <Compile Include="InterfaceResolver.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

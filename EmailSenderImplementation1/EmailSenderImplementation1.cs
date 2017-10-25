@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace EmailSenderInterfaces
+namespace EmailSenderImplementation1
 {
-    public class Class1
+    public class EmailSenderImplementation1
     {
     }
 }

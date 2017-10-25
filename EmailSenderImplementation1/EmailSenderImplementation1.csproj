@@ -43,5 +43,11 @@
     <Compile Include="EmailSenderImplementation1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\EmailSenderInterfaces\EmailSenderInterfaces.csproj">
+      <Project>{7c8a6463-3df5-4f35-8821-e04aab04746c}</Project>
+      <Name>EmailSenderInterfaces</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

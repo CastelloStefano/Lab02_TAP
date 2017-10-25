@@ -4,6 +4,7 @@ using System.IO;
 using System.Reflection;
 using Ninject;
 
+
 namespace TinyDependencyInjectionContainer
 {
     public class InterfaceResolver
@@ -45,7 +46,7 @@ namespace TinyDependencyInjectionContainer
     
         public T Instantiate<T>() where T : class
         {   Type value;
-            var a = _controller.TryGet(typeof(T));
+            var a =_controller.Get(typeof(T));
             _myDictionary.TryGetValue(typeof(T), out value);
             if (value == null) return null;
             return (T) Activator.CreateInstance(value);

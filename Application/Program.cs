@@ -17,7 +17,7 @@ namespace Application
             sender.SendEmail("pippo", "di brutto");
 
             Console.ReadKey();
-
+       
         }
     }
 }

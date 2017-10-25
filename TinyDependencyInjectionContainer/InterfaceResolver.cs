@@ -11,12 +11,13 @@ namespace TinyDependencyInjectionContainer
 {
     public class InterfaceResolver
     {
+
+        IKernel controller = new StandardKernel();
+        Dictionary<Type, Type> myDictionary = new Dictionary<Type, Type>();
         public InterfaceResolver(String str)
         {
             try
             {
-                IKernel controller = new StandardKernel();
-               Dictionary<Type,Type> myDictionary = new Dictionary<Type,Type>();
                 foreach (var line in File.ReadAllLines(str))
                 {
                     if (line.StartsWith("#")) continue;
@@ -26,17 +27,15 @@ namespace TinyDependencyInjectionContainer
                     foreach (var type in interfaceAssembly.GetTypes())
                         if (type.IsInterface && type.FullName.Equals(item[1]))
                         {
-                            Console.WriteLine("Todo1 " + type.FullName);
                             foreach (var implType in implementationAssembly.GetTypes())
                             {
                                 if (implType.IsClass && implType.FullName.Equals(item[3]))
                                 {
-                                    Console.WriteLine("Todo2 " + implType.FullName);
-                                    //TODO Bind !!
-                                    var implementatioInstance = Activator.CreateInstance(implType);
+                                    controller.Bind(type).To(implType);
                                     myDictionary.Add(type,implType);
                                 }
                             }
+
                         }
                 }
             }
@@ -48,8 +47,10 @@ namespace TinyDependencyInjectionContainer
         }
     
         public T Instantiate<T>() where T : class
-        {
-            return null;
+        {   Type value;
+            var val = controller.Get(typeof(T));
+            myDictionary.TryGetValue(typeof(T), out value);
+            return (T) Activator.CreateInstance(value);
         }
     }
 }

@@ -10,7 +10,7 @@ namespace EmailSenderImplementation2
     {
         public bool SendEmail(string to, string body)
         {
-            Console.WriteLine("EmailSenderImpl 2");
+            Console.WriteLine("EmailSenderImpl 2" + " " + to + " " + body);
             return true;
         }
     }

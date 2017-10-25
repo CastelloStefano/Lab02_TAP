@@ -6,7 +6,12 @@ using System.Threading.Tasks;
 
 namespace EmailSenderImplementation2
 {
-    public class EmailSenderImplementation2
+    public class EmailSenderImplementationTwo : EmailSenderInterfaces.IEmailSender
     {
+        public bool SendEmail(string to, string body)
+        {
+            Console.WriteLine("EmailSenderImpl 2");
+            return true;
+        }
     }
 }

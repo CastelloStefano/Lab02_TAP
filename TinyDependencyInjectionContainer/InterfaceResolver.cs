@@ -1,13 +1,52 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using Ninject;
 
 namespace TinyDependencyInjectionContainer
 {
     public class InterfaceResolver
     {
+        public InterfaceResolver(String str)
+        {
+            try
+            {
+                IKernel controllerKernel = new StandardKernel();
+                foreach (var line in File.ReadAllLines(str))
+                {
+                    if (line.StartsWith("#")) continue;
+                    var item = line.Split('*');
+                    var InterfaceAssembly = Assembly.LoadFrom(item[0]);
+                    var ImplementationAssembly = Assembly.LoadFrom(item[2]);
+                    foreach (var type in InterfaceAssembly.GetTypes())
+                        if (type.IsInterface && type.FullName.Equals(item[1]))
+                        {
+                            Console.WriteLine("Todo1 " + type.FullName);
+                            //TODO 1 
+                        }
+                    foreach (var implType in ImplementationAssembly.GetTypes())
+                    {
+                        if (implType.IsClass && implType.FullName.Equals(item[3]))
+                        {
+                            Console.WriteLine("Todo2 " + implType.FullName);
+                            //TODO 2
+                        }
+                    }
+                }
+            }
+            catch (FileNotFoundException e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
+
+
+        }
+
         /*
          *
          *Una class library, TinyDependencyInjectionContainer, contenente la classe InterfaceResolver con le seguenti caratteristiche:

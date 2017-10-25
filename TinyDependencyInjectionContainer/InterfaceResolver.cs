@@ -1,25 +1,22 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 using Ninject;
 
 namespace TinyDependencyInjectionContainer
 {
     public class InterfaceResolver
     {
-
-        IKernel controller = new StandardKernel();
-        Dictionary<Type, Type> myDictionary = new Dictionary<Type, Type>();
+        private readonly IKernel _controller = new StandardKernel();
+        private readonly Dictionary<Type, Type> _myDictionary = new Dictionary<Type, Type>();
         public InterfaceResolver(String str)
         {
             try
             {
                 foreach (var line in File.ReadAllLines(str))
                 {
+
                     if (line.StartsWith("#")) continue;
                     var item = line.Split('*');
                     var interfaceAssembly = Assembly.LoadFrom(item[0]);
@@ -31,8 +28,8 @@ namespace TinyDependencyInjectionContainer
                             {
                                 if (implType.IsClass && implType.FullName.Equals(item[3]))
                                 {
-                                    controller.Bind(type).To(implType);
-                                    myDictionary.Add(type,implType);
+                                    _controller.Bind(type).To(implType);
+                                    _myDictionary.Add(type,implType);
                                 }
                             }
 
@@ -48,8 +45,9 @@ namespace TinyDependencyInjectionContainer
     
         public T Instantiate<T>() where T : class
         {   Type value;
-            var val = controller.Get(typeof(T));
-            myDictionary.TryGetValue(typeof(T), out value);
+            var a = _controller.TryGet(typeof(T));
+            _myDictionary.TryGetValue(typeof(T), out value);
+            if (value == null) return null;
             return (T) Activator.CreateInstance(value);
         }
     }

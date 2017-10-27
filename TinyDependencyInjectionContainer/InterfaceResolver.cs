@@ -4,12 +4,10 @@ using System.IO;
 using System.Reflection;
 using Ninject;
 
-
 namespace TinyDependencyInjectionContainer
 {
     public class InterfaceResolver
     {
-        private readonly IKernel _controller = new StandardKernel();
         private readonly Dictionary<Type, Type> _myDictionary = new Dictionary<Type, Type>();
         public InterfaceResolver(String str)
         {
@@ -29,8 +27,8 @@ namespace TinyDependencyInjectionContainer
                             {
                                 if (implType.IsClass && implType.FullName.Equals(item[3]))
                                 {
-                                    _controller.Bind(type).To(implType);
                                     _myDictionary.Add(type,implType);
+
                                 }
                             }
 
@@ -43,11 +41,11 @@ namespace TinyDependencyInjectionContainer
                 throw;
             }
         }
+        
     
         public T Instantiate<T>() where T : class
-        {   Type value;
-            var a =_controller.Get(typeof(T));
-            _myDictionary.TryGetValue(typeof(T), out value);
+        {
+            _myDictionary.TryGetValue(typeof(T), out var value);
             if (value == null) return null;
             return (T) Activator.CreateInstance(value);
         }

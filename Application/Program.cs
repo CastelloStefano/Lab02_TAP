@@ -15,6 +15,7 @@ namespace Application
             var resolver = new InterfaceResolver("../../../TDIC_Configuration.txt");
             var sender = resolver.Instantiate<IEmailSender>();
             sender.SendEmail("pippo", "di brutto");
+            //todo gestire eccezione se null
             Console.ReadKey();
        
         }

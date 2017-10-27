@@ -28,10 +28,8 @@ namespace TinyDependencyInjectionContainer
                                 if (implType.IsClass && implType.FullName.Equals(item[3]))
                                 {
                                     _myDictionary.Add(type,implType);
-
                                 }
                             }
-
                         }
                 }
             }

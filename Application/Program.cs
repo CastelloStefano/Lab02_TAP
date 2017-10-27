@@ -1,6 +1,11 @@
-﻿using System;
+﻿/*
+ * Ver 2.0
+ */
+
+ using System;
 using System.Collections.Generic;
-using System.Linq;
+ using System.Diagnostics;
+ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using EmailSenderInterfaces;
@@ -14,8 +19,9 @@ namespace Application
         {
             var resolver = new InterfaceResolver("../../../TDIC_Configuration.txt");
             var sender = resolver.Instantiate<IEmailSender>();
-            sender.SendEmail("pippo", "di brutto");
-            //todo gestire eccezione se null
+            if (sender != null) sender.SendEmail("paperino", "foo");
+            else Debug.WriteLine("Bad New Sender is NULL");
+            //sender?.SendEmail("pippo", "di brutto");
             Console.ReadKey();
        
         }

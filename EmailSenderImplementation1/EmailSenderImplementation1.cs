@@ -1,9 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Ninject;
+﻿/*
+ * Ver 2.0
+ */
+
+using System;
 
 namespace EmailSenderImplementation1
 {

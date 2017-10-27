@@ -1,9 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿/*
+ * Ver 2.0
+ */
+ 
+ using System;
 namespace EmailSenderImplementation2
 {
     public class EmailSenderImplementationTwo : EmailSenderInterfaces.IEmailSender

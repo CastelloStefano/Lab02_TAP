@@ -22,7 +22,7 @@ namespace Application
             if (sender != null) sender.SendEmail("paperino", "foo");
             else Debug.WriteLine("Bad New Sender is NULL");
             sender?.SendEmail("pippo", "di brutto");
-            //Console.ReadKey();
+            Console.ReadLine();
        
         }
     }

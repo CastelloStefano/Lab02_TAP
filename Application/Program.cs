@@ -21,8 +21,8 @@ namespace Application
             var sender = resolver.Instantiate<IEmailSender>();
             if (sender != null) sender.SendEmail("paperino", "foo");
             else Debug.WriteLine("Bad New Sender is NULL");
-            //sender?.SendEmail("pippo", "di brutto");
-            Console.ReadKey();
+            sender?.SendEmail("pippo", "di brutto");
+            //Console.ReadKey();
        
         }
     }

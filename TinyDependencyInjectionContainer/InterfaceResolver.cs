@@ -15,7 +15,7 @@ namespace TinyDependencyInjectionContainer
     public class InterfaceResolver
     {
         private IKernel _myKernel;
-        
+        private IList<GenericModule> _myGenericModules = new List<GenericModule>();
         private readonly Dictionary<Type, Type> _myDictionary = new Dictionary<Type, Type>();
         public InterfaceResolver(String str)
         {
@@ -38,13 +38,13 @@ namespace TinyDependencyInjectionContainer
                                         // le ritorno poi ad ogni richiesta esterna
                                {
                                   //genero moduli !!!!
-                                  //**_myGenericModules.Add(new GenericModule(type,implType));
+                                  _myGenericModules.Add(new GenericModule(type,implType));
                                    //GenericModule aGenericModule = new GenericModule(implType,type);
                                
                                    _myDictionary.Add(type, implType);
                                }
                    // Genero il kernel con i modulil.
-                   _myKernel = new StandardKernel(/*help*/);
+                   _myKernel = new StandardKernel();
 
 
                 }
